@@ -1,0 +1,16 @@
+*.iml
+.gradle
+.kotlin
+.idea
+build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+*.log
+*.tmp

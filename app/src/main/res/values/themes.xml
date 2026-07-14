@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.FoolGame" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#2E7D32</item>
+        <item name="colorPrimaryDark">#1B5E20</item>
+        <item name="colorAccent">#FFC107</item>
+        <item name="android:statusBarColor">#1B5E20</item>
+        <item name="android:navigationBarColor">#1B5E20</item>
+    </style>
+</resources>

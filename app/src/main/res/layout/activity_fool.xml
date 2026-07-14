@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B5E20"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="2dp">
+
+        <!-- Top bar — compact -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#2E7D32"
+            android:paddingHorizontal="4dp">
+
+            <TextView
+                android:id="@+id/trump_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:paddingEnd="6dp" />
+
+            <TextView
+                android:id="@+id/info_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#CCFFCC"
+                android:textSize="10sp"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/status_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/deck_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp"
+                android:paddingEnd="6dp" />
+
+            <Button
+                android:id="@+id/new_game_button"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:text="New"
+                android:textSize="9sp"
+                android:paddingHorizontal="6dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp" />
+        </LinearLayout>
+
+        <!-- AI hand (small) -->
+        <LinearLayout
+            android:id="@+id/ai_hand"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="1dp" />
+
+        <!-- Table area — biggest space -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:padding="2dp">
+            <LinearLayout
+                android:id="@+id/table_area"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <!-- Action buttons — compact -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="#2E7D32"
+            android:padding="2dp">
+
+            <Button
+                android:id="@+id/play_button"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Attack"
+                android:paddingHorizontal="12dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/pass_button"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Pass"
+                android:paddingHorizontal="12dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/take_button"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Take"
+                android:paddingHorizontal="12dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Player hand (slightly larger than AI) -->
+        <LinearLayout
+            android:id="@+id/player_hand"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="1dp" />
+
+    </LinearLayout>
+
+</FrameLayout>
