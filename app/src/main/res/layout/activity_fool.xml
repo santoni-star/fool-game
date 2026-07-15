@@ -97,42 +97,48 @@
         <!-- Action buttons — compact -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:background="#2E7D32"
-            android:padding="2dp">
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="4dp">
 
             <Button
                 android:id="@+id/play_button"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_gravity="start"
                 android:text="Attack"
-                android:paddingHorizontal="12dp"
+                android:paddingHorizontal="8dp"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:textSize="12sp" />
+                android:textSize="14sp"
+                android:maxLines="1" />
 
             <Button
                 android:id="@+id/pass_button"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_height="40dp"
                 android:text="Pass"
-                android:paddingHorizontal="12dp"
+                android:paddingHorizontal="16dp"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:visibility="gone" />
 
             <Button
                 android:id="@+id/take_button"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_gravity="end"
                 android:text="Take"
-                android:paddingHorizontal="12dp"
+                android:paddingHorizontal="8dp"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:visibility="gone" />
         </LinearLayout>
 

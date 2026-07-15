@@ -42,10 +42,18 @@ class CardView @JvmOverloads constructor(
         color = 0xFF8888DD.toInt(); textSize = 36f; textAlign = Paint.Align.CENTER; typeface = Typeface.DEFAULT_BOLD
     }
 
+    var maxCardWidth: Int = 0
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val w = MeasureSpec.getSize(widthMeasureSpec)
-        val h = (w * 160f / 110f).toInt()
-        setMeasuredDimension(w, h)
+        val suggestedW = MeasureSpec.getSize(widthMeasureSpec)
+        val w = if (maxCardWidth > 0 && suggestedW > maxCardWidth) {
+            MeasureSpec.makeMeasureSpec(maxCardWidth, MeasureSpec.EXACTLY)
+        } else {
+            widthMeasureSpec
+        }
+        val finalW = MeasureSpec.getSize(w)
+        val h = (finalW * 160f / 110f).toInt()
+        setMeasuredDimension(finalW, h)
     }
 
     override fun onDraw(canvas: Canvas) {

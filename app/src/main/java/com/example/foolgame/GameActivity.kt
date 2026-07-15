@@ -137,31 +137,43 @@ class GameActivity : AppCompatActivity() {
     private fun runAi() {
         if (game.isGameOver || aiRunning) return
         aiRunning = true
+        processAiStep()
+    }
 
-        while (game.phase != GamePhase.GAME_OVER && (
-                game.phase == GamePhase.ATTACK_TURN && game.attacker == AttackRole.AI_ATTACKER ||
-                game.phase == GamePhase.DEFENSE_TURN && game.attacker == AttackRole.PLAYER_ATTACKER
-        )) {
-            val action = game.executeAiTurn()
-            updateUI()
-            when (action) {
-                is AiAction.ATTACKED   -> statusText.text = "AI attacks with ${action.card}"
-                is AiAction.DEFENDED   -> statusText.text = "AI defends with ${action.card}"
-                is AiAction.THROWN     -> statusText.text = "AI throws ${action.card}"
-                is AiAction.THROW_PASS -> statusText.text = "AI passes"
-                is AiAction.TOOK_CARDS -> statusText.text = "AI takes cards!"
-                is AiAction.NOTHING    -> {}
-            }
-            game.clearSelection()
+    private fun processAiStep() {
+        if (game.isGameOver) {
+            updateUI(); showResult(); aiRunning = false; return
         }
+
+        val shouldAct = game.phase == GamePhase.ATTACK_TURN && game.attacker == AttackRole.AI_ATTACKER ||
+                        game.phase == GamePhase.DEFENSE_TURN && game.attacker == AttackRole.PLAYER_ATTACKER
+
+        if (!shouldAct) {
+            // Player's turn — stop AI and show controls
+            updateUI()
+            aiRunning = false
+            return
+        }
+
+        val action = game.executeAiTurn()
+        updateUI()
+        when (action) {
+            is AiAction.ATTACKED   -> statusText.text = "AI attacks with ${action.card}"
+            is AiAction.DEFENDED   -> statusText.text = "AI defends with ${action.card}"
+            is AiAction.THROWN     -> statusText.text = "AI throws ${action.card}"
+            is AiAction.THROW_PASS -> statusText.text = "AI passes"
+            is AiAction.TOOK_CARDS -> statusText.text = "AI takes cards!"
+            is AiAction.NOTHING    -> {}
+        }
+        game.clearSelection()
 
         if (game.isGameOver) {
-            updateUI()
-            showResult()
-        } else {
-            updateUI()
+            runOnUiThread { updateUI(); showResult(); aiRunning = false }
+            return
         }
-        aiRunning = false
+
+        // Delay before next AI step so player can see what happened
+        handler.postDelayed({ processAiStep() }, 900)
     }
 
     // --- UI update ---
@@ -195,6 +207,7 @@ class GameActivity : AppCompatActivity() {
             cv.layoutParams = LinearLayout.LayoutParams(0, 200, 1f).apply {
                 setMargins(3, 4, 3, 4)
             }
+            cv.maxCardWidth = (80 * resources.displayMetrics.density).toInt()
 
             cv.setOnClickListener {
                 if (!aiRunning && (
